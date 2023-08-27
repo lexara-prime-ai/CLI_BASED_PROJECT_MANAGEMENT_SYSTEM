@@ -9,6 +9,11 @@ namespace ProjectManagementSystem.DbConfig
     public class ProjectManagementDbContext : DbContext
     {
         /*
+            Default fields
+        */
+        readonly string rdx_FILE_PATH = @"DbConfig\Environment.txt";
+
+        /*
             TABLE WRAPPERS aka DbSets
         */
         public DbSet<User> Users { get; set; }
@@ -17,9 +22,15 @@ namespace ProjectManagementSystem.DbConfig
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(
-                ""
-            );
+            try
+            {
+                string connectionString = File.ReadAllText(rdx_FILE_PATH);
+                optionsBuilder.UseSqlServer(connectionString);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
