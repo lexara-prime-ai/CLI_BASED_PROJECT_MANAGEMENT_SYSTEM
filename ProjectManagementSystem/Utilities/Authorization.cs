@@ -1,5 +1,6 @@
 using ProjectManagementSystem.DbConfig;
 using ProjectManagementSystem.Entities;
+using ProjectManagementSystem.Services;
 
 namespace ProjectManagementSystem.Utilities
 {
@@ -17,7 +18,7 @@ namespace ProjectManagementSystem.Utilities
         /*
             User Authorization
         */
-        public void AUTHORIZE_USER()
+        public async Task AUTHORIZE_USER()
         {
             Console.WriteLine("Please select an option to continue:\n1. Register\n2. Login\n",
                 Console.ForegroundColor = ConsoleColor.White
@@ -31,7 +32,7 @@ namespace ProjectManagementSystem.Utilities
                 switch (USER_INPUT)
                 {
                     case "1":
-                        REGISTER_USER();
+                        await REGISTER_USER();
                         break;
                     case "2":
                         LOGIN_USER();
@@ -40,7 +41,7 @@ namespace ProjectManagementSystem.Utilities
                     default:
                         Console.Write("ERROR: ", Console.ForegroundColor = ConsoleColor.White);
                         Console.WriteLine("Invalid input...", Console.ForegroundColor = ConsoleColor.Red);
-                        AUTHORIZE_USER();
+                        await AUTHORIZE_USER();
                         break;
                 }
             }
@@ -48,14 +49,14 @@ namespace ProjectManagementSystem.Utilities
             {
                 Console.Write("ERROR: ", Console.ForegroundColor = ConsoleColor.White);
                 Console.WriteLine("Invalid input...", Console.ForegroundColor = ConsoleColor.Red);
-                AUTHORIZE_USER();
+                await AUTHORIZE_USER();
             }
         }
 
         /*
             Authentication methods
         */
-        public void REGISTER_USER()
+        public async Task REGISTER_USER()
         {
             Console.WriteLine("Switching to Registration...");
 
@@ -82,6 +83,9 @@ namespace ProjectManagementSystem.Utilities
                         Password = HashedPassword,
                         Role = "user"
                     };
+
+                    // Send email notification
+                    await MailingService.SEND_MAIL(Email);
 
                     // Add user
                     context.Users.Add(user);

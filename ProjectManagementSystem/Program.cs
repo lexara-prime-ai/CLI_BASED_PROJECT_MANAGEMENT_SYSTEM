@@ -13,4 +13,4 @@
     management processes, enhance collaboration and improve 
     productivity within the team.
 */
-Start.START_PROGRAM();
+await Start.START_PROGRAM();
