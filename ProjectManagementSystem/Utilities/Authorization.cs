@@ -137,7 +137,7 @@ namespace ProjectManagementSystem.Utilities
                                 Console.WriteLine("\n\n<< Logged in as User >>", Console.ForegroundColor = ConsoleColor.Green);
 
                                 // Display User Actions
-                                UserActions.DISPLAY_USER_ACTIONS();
+                                UserActions.DISPLAY_USER_ACTIONS(user.UserId);
                             }
                         }
                         else

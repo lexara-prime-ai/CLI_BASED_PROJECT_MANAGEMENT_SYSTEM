@@ -23,6 +23,8 @@ DROP TABLE Tasks
 DROP TABLE Users
 
 SELECT * FROM Users
+SELECT * FROM Projects
+SELECT * FROM Tasks
 
 UPDATE Users
 SET Role='user'
