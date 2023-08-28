@@ -3,20 +3,20 @@ using System.Text;
 
 namespace ProjectManagementSystem.Services
 {
-    public class MailingService
+  public class MailingService
+  {
+    public static async Task SEND_MAIL(string rdx_USER_EMAIL)
     {
-        public static async Task SEND_MAIL(string rdx_USER_EMAIL)
-        {
-            /*
-                Default fields
-            */
-            string rdx_FILE_PATH = @"Services\AccessToken.txt";
+      /*
+          Default fields
+      */
+      string rdx_FILE_PATH = @"C:\Users\USER\Documents\JituTraining\projects\C# Exercises\CLI_BASED_PROJECT_MANAGEMENT_SYSTEM\ProjectManagementSystem\Services\AccessToken.txt";
 
-            string accessToken = File.ReadAllText(rdx_FILE_PATH);
+      string accessToken = File.ReadAllText(rdx_FILE_PATH);
 
-            string emailEndpoint = "https://graph.microsoft.com/v1.0/me/sendMail";
+      string emailEndpoint = "https://graph.microsoft.com/v1.0/me/sendMail";
 
-            string emailJson = $@"
+      string emailJson = $@"
             {{
             ""message"": {{
                 ""subject"": ""Thank you for Registering..."",
@@ -35,22 +35,22 @@ namespace ProjectManagementSystem.Services
         }}
         ";
 
-            using HttpClient client = new();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+      using HttpClient client = new();
+      client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
-            StringContent content = new(emailJson, Encoding.UTF8, "application/json");
+      StringContent content = new(emailJson, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await client.PostAsync(emailEndpoint, content);
+      HttpResponseMessage response = await client.PostAsync(emailEndpoint, content);
 
-            if (response.IsSuccessStatusCode)
-            {
-                Console.WriteLine("Email sent successfully.");
-            }
-            else
-            {
-                string responseContent = await response.Content.ReadAsStringAsync();
-                Console.WriteLine($"Error sending email: {responseContent}");
-            }
-        }
+      if (response.IsSuccessStatusCode)
+      {
+        Console.WriteLine("Email sent successfully.");
+      }
+      else
+      {
+        string responseContent = await response.Content.ReadAsStringAsync();
+        Console.WriteLine($"Error sending email: {responseContent}");
+      }
     }
+  }
 }
