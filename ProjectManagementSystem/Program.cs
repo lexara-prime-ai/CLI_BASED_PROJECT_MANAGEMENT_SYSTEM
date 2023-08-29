@@ -1,7 +1,7 @@
 ﻿using ProjectManagementSystem.Utilities;
 /*
     Application Name : Project Task Management System 
-    Author : Irfan Ghat
+    Author : Irfan Ghat,Yvonne Sheila, Norman Kipngetich
     Project Overview  :
 
     The Task management System is a Project management tool 
@@ -13,4 +13,4 @@
     management processes, enhance collaboration and improve 
     productivity within the team.
 */
-Start.START_PROGRAM();
+await Start.START_PROGRAM();

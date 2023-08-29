@@ -4,7 +4,7 @@ namespace ProjectManagementSystem.Utilities
 {
     public class Start
     {
-        public static void START_PROGRAM()
+        public static async Task START_PROGRAM()
         {
 
             ProjectManagementDbContext context = new();
@@ -18,7 +18,7 @@ namespace ProjectManagementSystem.Utilities
 
                 // User authorization
                 Authorization authorization = new();
-                authorization.AUTHORIZE_USER();
+                await authorization.AUTHORIZE_USER();
 
             }
             catch (Exception ex)
