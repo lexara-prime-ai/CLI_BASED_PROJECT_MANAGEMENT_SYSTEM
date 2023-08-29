@@ -37,7 +37,7 @@ namespace ProjectManagementSystem.Services
         ";
 
       using HttpClient client = new();
-      client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+      client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken.Trim());
 
       StringContent content = new(emailJson, Encoding.UTF8, "application/json");
 
