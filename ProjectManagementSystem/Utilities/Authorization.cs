@@ -90,6 +90,8 @@ namespace ProjectManagementSystem.Utilities
                     // Add user
                     context.Users.Add(user);
                     context.SaveChanges();
+
+                    LOGIN_USER();
                 }
             }
             catch (Exception ex)

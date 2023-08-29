@@ -138,8 +138,6 @@ namespace ProjectManagementSystem.Utilities
     {
       var tasks = context.Tasks.Where(task => task.UserId != null).ToList();
 
-
-
       if (tasks.Count > 0)
       {
         foreach (var task in tasks)
@@ -147,7 +145,6 @@ namespace ProjectManagementSystem.Utilities
           Console.WriteLine($"Task ID: {task.AssignedTaskId}, Description: {task.TaskTitle}, Completed: {task.Completed}");
         }
       }
-
       else
       {
         Console.WriteLine("No tasks assigned.");
