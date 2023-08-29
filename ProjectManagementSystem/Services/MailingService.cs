@@ -8,11 +8,12 @@ namespace ProjectManagementSystem.Services
     public static async Task SEND_MAIL(string rdx_USER_EMAIL)
     {
       /*
-          Default fields
-      */
-      string rdx_FILE_PATH = @"C:\Users\USER\Documents\JituTraining\projects\C# Exercises\CLI_BASED_PROJECT_MANAGEMENT_SYSTEM\ProjectManagementSystem\Services\AccessToken.txt";
+         Default fields : Path to connection string
+     */
+      string rdx_PROJECT_PATH = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\.."));
+      string rdx_ACCESS_TOKEN_PATH = $"{rdx_PROJECT_PATH}\\Services\\AccessToken.txt";
 
-      string accessToken = File.ReadAllText(rdx_FILE_PATH);
+      string accessToken = File.ReadAllText(rdx_ACCESS_TOKEN_PATH);
 
       string emailEndpoint = "https://graph.microsoft.com/v1.0/me/sendMail";
 

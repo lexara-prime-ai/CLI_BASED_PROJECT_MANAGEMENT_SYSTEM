@@ -9,9 +9,10 @@ namespace ProjectManagementSystem.DbConfig
     public class ProjectManagementDbContext : DbContext
     {
         /*
-            Default fields
+            Default fields : Path to connection string
         */
-        readonly string rdx_FILE_PATH = @"DbConfig\Environment.txt";
+        static readonly string rdx_PROJECT_PATH = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\.."));
+        static readonly string rdx_CONNECTION_STRING_PATH = $"{rdx_PROJECT_PATH}\\DbConfig\\Environment.txt";
 
         /*
             TABLE WRAPPERS aka DbSets
@@ -24,7 +25,7 @@ namespace ProjectManagementSystem.DbConfig
         {
             try
             {
-                string connectionString = File.ReadAllText(rdx_FILE_PATH);
+                string connectionString = File.ReadAllText(rdx_CONNECTION_STRING_PATH);
                 optionsBuilder.UseSqlServer(connectionString);
             }
             catch (Exception ex)
